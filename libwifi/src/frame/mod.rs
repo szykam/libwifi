@@ -42,6 +42,7 @@ pub enum Frame {
     Ack(Ack),
     BlockAckRequest(BlockAckRequest),
     BlockAck(BlockAck),
+    NdpAnnouncement(NdpAnnouncement),
 
     // Data Frames
     Data(Data),
