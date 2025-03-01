@@ -265,3 +265,23 @@ pub fn parse_block_ack(frame_control: FrameControl, input: &[u8]) -> Result<Fram
         acks,
     }))
 }
+
+pub fn parse_ndp_announcement(frame_control: FrameControl, input: &[u8]) -> Result<Frame, Error> {
+    let (_, (duration, receiver, transmitter, sounding_token, sta_info)) = (
+        take(2usize),
+        parse_mac,
+        parse_mac,
+        take(1usize),
+        take(2usize),
+    )
+        .parse(input)?;
+
+    Ok(Frame::NdpAnnouncement(NdpAnnouncement {
+        frame_control,
+        duration: clone_slice::<2>(duration),
+        receiver,
+        transmitter,
+        sounding_token: clone_slice::<1>(sounding_token),
+        sta_info: clone_slice::<2>(sta_info),
+    }))
+}

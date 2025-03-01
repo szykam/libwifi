@@ -74,6 +74,7 @@ pub fn parse_frame(input: &[u8], fcs_included: bool) -> Result<Frame, Error> {
         FrameSubType::Ack => parse_ack(frame_control, input),
         FrameSubType::BlockAckRequest => parse_block_ack_request(frame_control, input),
         FrameSubType::BlockAck => parse_block_ack(frame_control, input),
+        FrameSubType::NdpAnnouncement => parse_ndp_announcement(frame_control, input),
 
         // Data
         FrameSubType::Data => parse_data(frame_control, input),

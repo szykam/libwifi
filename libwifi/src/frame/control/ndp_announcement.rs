@@ -5,10 +5,10 @@ use crate::frame::components::{FrameControl, MacAddress};
 pub struct NdpAnnouncement {
     pub frame_control: FrameControl,
     pub duration: [u8; 2],
-    receiver: MacAddress,
-    transmitter: MacAddress,
-    sounding_token: u8,
-    sta_info: [u8; 2]
+    pub receiver: MacAddress,
+    pub transmitter: MacAddress,
+    pub sounding_token: [u8; 1],
+    pub sta_info: [u8; 2],
 }
 
 impl Addresses for NdpAnnouncement {
